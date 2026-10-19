@@ -175,4 +175,53 @@ body { font-family: var(--font-sans); }
 @utility bg-hero-overlay { background: var(--hero-overlay); }
 @utility reveal { animation: rise 0.9s cubic-bezier(.2,.7,.2,1) both; }
 @keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; } 
+
+/* WTTC Premium Animations */
+
+.reveal {
+  animation: wttc-fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes wttc-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a.bg-gold,
+button.bg-gold {
+  transition:
+    transform 220ms ease,
+    filter 220ms ease,
+    box-shadow 220ms ease;
+}
+
+a.bg-gold:hover,
+button.bg-gold:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 18%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+

@@ -102,7 +102,7 @@ function Index() {
         <div className="bg-hero-overlay absolute inset-0" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background to-transparent" />
 
-        <div className="reveal relative mx-auto w-full max-w-7xl px-5 pb-24 pt-36 md:py-32">
+        <div className="reveal-left relative mx-auto w-full max-w-7xl px-5 pb-24 pt-36 md:py-32">
           <Eyebrow>Odessa, Texas</Eyebrow>
           <h1 className="font-display max-w-4xl text-5xl font-semibold leading-[1.04] sm:text-6xl md:text-8xl">
             Drive West Texas{" "}
@@ -127,30 +127,17 @@ function Index() {
       {/* Quick information */}
       <section className="border-y border-border bg-ink">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-5 py-10 sm:grid-cols-3">
-          <div>
-            <p className="text-xs uppercase tracking-[0.2em] text-primary">
-              Location
-            </p>
-            <p className="mt-2 font-display text-2xl font-semibold">
-              Odessa, Texas
-            </p>
+          <div className="reveal-left">
+            <p className="text-xs uppercase tracking-[0.2em] text-primary">Location</p>
+            <p className="mt-2 font-display text-2xl font-semibold">Odessa, Texas</p>
           </div>
-          <div>
-            <p className="text-xs uppercase tracking-[0.2em] text-primary">
-              Business hours
-            </p>
-            <p className="mt-2 font-display text-2xl font-semibold">
-              Mon–Fri, 10–5
-            </p>
+          <div className="reveal-up">
+            <p className="text-xs uppercase tracking-[0.2em] text-primary">Business hours</p>
+            <p className="mt-2 font-display text-2xl font-semibold">Mon–Fri, 10–5</p>
           </div>
-          <div>
-            <p className="text-xs uppercase tracking-[0.2em] text-primary">
-              Contact
-            </p>
-            <a
-              href={TEL}
-              className="mt-2 inline-block font-display text-2xl font-semibold text-gold hover:underline"
-            >
+          <div className="reveal-right">
+            <p className="text-xs uppercase tracking-[0.2em] text-primary">Contact</p>
+            <a href={TEL} className="mt-2 inline-block font-display text-2xl font-semibold text-gold hover:underline">
               {PHONE}
             </a>
           </div>
@@ -159,7 +146,7 @@ function Index() {
 
       {/* Categories */}
       <section className="mx-auto max-w-7xl px-5 py-24 md:py-32">
-        <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+        <div className="reveal-left flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div>
             <Eyebrow>Explore your options</Eyebrow>
             <H2>Find your next vehicle</H2>
@@ -171,11 +158,11 @@ function Index() {
         </div>
 
         <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {categories.map((category) => (
+          {categories.map((category, index) => (
             <Link
               key={category.title}
               to="/inventory"
-              className="group relative block aspect-[4/5] overflow-hidden border border-border"
+              className={`reveal-up group relative block aspect-[4/5] overflow-hidden border border-border ${index === 1 ? "md:[transition-delay:120ms]" : index === 2 ? "md:[transition-delay:240ms]" : ""}`}
             >
               <img
                 src={category.img}
@@ -187,12 +174,8 @@ function Index() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-7">
-                <h3 className="font-display text-3xl font-semibold">
-                  {category.title}
-                </h3>
-                <p className="mt-3 text-sm text-foreground/75">
-                  {category.text}
-                </p>
+                <h3 className="font-display text-3xl font-semibold">{category.title}</h3>
+                <p className="mt-3 text-sm text-foreground/75">{category.text}</p>
                 <span className="mt-5 inline-block text-xs font-semibold uppercase tracking-[0.2em] text-primary">
                   Explore inventory →
                 </span>
@@ -201,18 +184,16 @@ function Index() {
           ))}
         </div>
 
-        <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+        <div className="reveal-up mt-10 flex flex-col gap-4 sm:flex-row">
           <Btn to="/vehicles">Explore Vehicle Types</Btn>
-          <Btn to="/inventory" ghost>
-            View Inventory Page
-          </Btn>
+          <Btn to="/inventory" ghost>View Inventory Page</Btn>
         </div>
       </section>
 
       {/* Gallery */}
       <section className="scroll-mt-24 bg-ink py-24 md:py-32">
         <div className="mx-auto max-w-7xl px-5">
-          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <div className="reveal-left flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div>
               <Eyebrow>Vehicle showcase</Eyebrow>
               <H2>A closer look at vehicle styles</H2>
@@ -227,7 +208,7 @@ function Index() {
             {gallery.map((item, index) => (
               <figure
                 key={item.label}
-                className={`group relative overflow-hidden border border-border ${
+                className={`reveal-right group relative overflow-hidden border border-border ${
                   index === 0
                     ? "col-span-2 aspect-[16/10] md:row-span-2 md:aspect-auto"
                     : index === 3
@@ -251,18 +232,16 @@ function Index() {
             ))}
           </div>
 
-          <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+          <div className="reveal-up mt-10 flex flex-col gap-4 sm:flex-row">
             <Btn href={GBP}>Google Business Profile</Btn>
-            <Btn href={TEL} ghost>
-              Call For Availability
-            </Btn>
+            <Btn href={TEL} ghost>Call For Availability</Btn>
           </div>
         </div>
       </section>
 
       {/* About */}
       <section className="mx-auto grid max-w-7xl items-center gap-14 px-5 py-24 md:grid-cols-2 md:py-32">
-        <div className="relative">
+        <div className="reveal-right relative">
           <img
             src={truck}
             alt="Representative pickup truck photograph"
@@ -277,7 +256,7 @@ function Index() {
           </div>
         </div>
 
-        <div>
+        <div className="reveal-left">
           <Eyebrow>About the dealership</Eyebrow>
           <H2>Local to Odessa. Focused on your next drive.</H2>
           <p className="mt-6 leading-relaxed text-foreground/80">
@@ -291,9 +270,7 @@ function Index() {
           </p>
           <div className="mt-9 flex flex-col gap-4 sm:flex-row">
             <Btn to="/about">About Us</Btn>
-            <Btn to="/contact" ghost>
-              Contact Us
-            </Btn>
+            <Btn to="/contact" ghost>Contact Us</Btn>
           </div>
         </div>
       </section>
@@ -301,23 +278,23 @@ function Index() {
       {/* Buying guide */}
       <section className="border-y border-border bg-card py-24 md:py-32">
         <div className="mx-auto max-w-7xl px-5">
-          <Eyebrow>Buying guide</Eyebrow>
-          <H2>Five steps to a confident purchase</H2>
+          <div className="reveal-left">
+            <Eyebrow>Buying guide</Eyebrow>
+            <H2>Five steps to a confident purchase</H2>
+          </div>
           <div className="mt-14 grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-5">
-            {steps.map(([number, title, description]) => (
+            {steps.map(([number, title, description], index) => (
               <div
                 key={number}
-                className="bg-card p-7 transition hover:bg-secondary md:p-8"
+                className={`reveal-up bg-card p-7 transition hover:bg-secondary md:p-8 ${index > 0 ? "md:[transition-delay:100ms]" : ""}`}
               >
                 <p className="font-display text-5xl text-gold">{number}</p>
                 <h3 className="mt-6 text-lg font-semibold">{title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                  {description}
-                </p>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{description}</p>
               </div>
             ))}
           </div>
-          <div className="mt-10">
+          <div className="reveal-up mt-10">
             <Btn to="/buying-guide">Read the Complete Buying Guide</Btn>
           </div>
         </div>
@@ -336,7 +313,7 @@ function Index() {
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/70" />
 
         <div className="relative mx-auto grid max-w-7xl gap-14 px-5 md:grid-cols-2">
-          <div>
+          <div className="reveal-left">
             <Eyebrow>Trade-in and financing</Eyebrow>
             <H2>Let's discuss your options</H2>
             <p className="mt-6 leading-relaxed text-foreground/80">
@@ -349,16 +326,12 @@ function Index() {
             </p>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
               <Btn to="/financing">Financing Information</Btn>
-              <Btn to="/contact" ghost>
-                Contact Us
-              </Btn>
+              <Btn to="/contact" ghost>Contact Us</Btn>
             </div>
           </div>
 
-          <div className="border border-border bg-card/90 p-6 backdrop-blur md:p-10">
-            <h3 className="font-display text-2xl font-semibold">
-              Send an inquiry
-            </h3>
+          <div className="reveal-right border border-border bg-card/90 p-6 backdrop-blur md:p-10">
+            <h3 className="font-display text-2xl font-semibold">Send an inquiry</h3>
             <p className="mb-6 mt-2 text-sm text-muted-foreground">
               Enter your contact details and message. Your phone's messaging
               app will open with a prepared text.
@@ -370,53 +343,41 @@ function Index() {
 
       {/* FAQ */}
       <section className="mx-auto max-w-4xl px-5 py-24 md:py-32">
-        <div className="text-center">
+        <div className="reveal-up text-center">
           <Eyebrow>Frequently asked questions</Eyebrow>
           <H2>Good questions deserve clear answers</H2>
         </div>
 
         <div className="mt-12 divide-y divide-border border-y border-border">
           {faqs.map((item, index) => (
-            <div key={item.q}>
+            <div key={item.q} className="reveal-left">
               <button
                 type="button"
                 aria-expanded={faqOpen === index}
-                onClick={() =>
-                  setFaqOpen(faqOpen === index ? null : index)
-                }
+                onClick={() => setFaqOpen(faqOpen === index ? null : index)}
                 className="flex w-full items-center justify-between gap-6 py-6 text-left"
               >
-                <span className="text-base font-semibold md:text-lg">
-                  {item.q}
-                </span>
-                <span
-                  className={`text-2xl text-primary transition ${
-                    faqOpen === index ? "rotate-45" : ""
-                  }`}
-                >
+                <span className="text-base font-semibold md:text-lg">{item.q}</span>
+                <span className={`text-2xl text-primary transition ${faqOpen === index ? "rotate-45" : ""}`}>
                   +
                 </span>
               </button>
               {faqOpen === index && (
-                <p className="reveal pb-6 leading-relaxed text-muted-foreground">
-                  {item.a}
-                </p>
+                <p className="pb-6 leading-relaxed text-muted-foreground">{item.a}</p>
               )}
             </div>
           ))}
         </div>
 
-        <div className="mt-8 text-center">
-          <Btn to="/faq" ghost>
-            View All FAQs
-          </Btn>
+        <div className="reveal-up mt-8 text-center">
+          <Btn to="/faq" ghost>View All FAQs</Btn>
         </div>
       </section>
 
       {/* Contact and location */}
       <section className="scroll-mt-24 bg-ink py-24 md:py-32">
         <div className="mx-auto grid max-w-7xl gap-14 px-5 lg:grid-cols-2">
-          <div>
+          <div className="reveal-left">
             <Eyebrow>Contact</Eyebrow>
             <H2>Let's talk vehicles</H2>
             <p className="mt-5 max-w-lg text-foreground/75">
@@ -428,11 +389,9 @@ function Index() {
             </div>
           </div>
 
-          <div>
+          <div className="reveal-right">
             <Eyebrow>Find us</Eyebrow>
-            <h3 className="font-display text-3xl font-semibold">
-              Odessa, Texas
-            </h3>
+            <h3 className="font-display text-3xl font-semibold">Odessa, Texas</h3>
             <div className="mt-6 aspect-[4/3] overflow-hidden border border-border">
               <iframe
                 title="General map of Odessa, Texas"
@@ -442,24 +401,16 @@ function Index() {
               />
             </div>
             <div className="mt-6 grid gap-3 text-sm">
-              <a href={TEL} className="text-primary hover:underline">
-                {PHONE}
-              </a>
+              <a href={TEL} className="text-primary hover:underline">{PHONE}</a>
               <p className="text-muted-foreground">
                 Monday–Friday: 10 AM–5 PM
                 <br />
                 Saturday–Sunday: Closed
               </p>
               <p className="text-xs text-muted-foreground">
-                The map shows the general Odessa area, not a verified street
-                address.
+                The map shows the general Odessa area, not a verified street address.
               </p>
-              <a
-                href={GBP}
-                target="_blank"
-                rel="noreferrer"
-                className="text-primary underline"
-              >
+              <a href={GBP} target="_blank" rel="noreferrer" className="text-primary underline">
                 Open Google Business Profile for directions →
               </a>
             </div>
@@ -474,5 +425,4 @@ function Index() {
       <MobileCallBar />
     </div>
   );
-                }
-        
+            }

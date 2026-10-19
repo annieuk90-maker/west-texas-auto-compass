@@ -12,7 +12,7 @@ export const nav = [
   { label: "Inventory", to: "/inventory" },
   { label: "Vehicles", to: "/vehicles" },
   { label: "About", to: "/about" },
-  { label: "Buying Guide", to: "/buyingl-guide" },
+  { label: "Buying Guide", to: "/buying-guide" },
   { label: "Financing", to: "/financing" },
   { label: "FAQ", to: "/faq" },
   { label: "Contact", to: "/contact" },

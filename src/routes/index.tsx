@@ -318,7 +318,7 @@ function Index() {
             ))}
           </div>
           <div className="mt-10">
-            <Btn to="/buying/guide">Read the Complete Buying Guide</Btn>
+            <Btn to="/buying-guide">Read the Complete Buying Guide</Btn>
           </div>
         </div>
       </section>

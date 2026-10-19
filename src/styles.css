@@ -225,3 +225,45 @@ button.bg-gold:hover {
   }
 }
 
+/* WTTC Scroll Entrance Animations */
+
+.reveal-left,
+.reveal-right,
+.reveal-up {
+  opacity: 0;
+  transition:
+    opacity 800ms ease,
+    transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-left {
+  transform: translateX(-55px);
+}
+
+.reveal-right {
+  transform: translateX(55px);
+}
+
+.reveal-up {
+  transform: translateY(35px);
+}
+
+.reveal-left.is-visible,
+.reveal-right.is-visible,
+.reveal-up.is-visible {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-left,
+  .reveal-right,
+  .reveal-up {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    will-change: auto;
+  }
+}
+

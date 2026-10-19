@@ -1,9 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
-import hero from "@/assets/hero.jpg";
-import suv from "@/assets/suv.jpg";
-import sedan from "@/assets/sedan.jpg";
-import truck from "@/assets/truck.jpg";
+import { photos, gallery } from "@/lib/photos";
+const hero = photos.hero.src, suv = photos.suv.src, sedan = photos.sedan.src, truck = photos.truck.src;
 
 const PHONE = "+1 432-614-0812";
 const TEL = "tel:+14326140812";
@@ -122,9 +120,9 @@ function InquiryForm({ type }: { type: "trade" | "contact" }) {
       {err && <p className="text-sm text-destructive">{err}</p>}
       {sent && <p className="text-sm text-primary">Opening your messages app — or call us directly at {PHONE}.</p>}
       <button type="submit" className="bg-gold px-7 py-4 text-sm font-semibold uppercase tracking-[0.18em] text-primary-foreground transition hover:brightness-110">
-        Send Inquiry
+        Send via Text Message (SMS)
       </button>
-      <p className="text-xs text-muted-foreground">Sends a text message to {PHONE}. Prefer to talk? <a href={TEL} className="text-primary underline">Call us</a>.</p>
+      <p className="text-xs text-muted-foreground">This form does not email or save your details — it opens your phone's messaging app with a pre-filled text to {PHONE}. Prefer to talk? <a href={TEL} className="text-primary underline">Call us</a>.</p>
     </form>
   );
 }
@@ -219,11 +217,18 @@ function Index() {
               Photos are representative. Our inventory changes often — call or check our Google profile for what's available today.
             </p>
           </div>
-          <div className="mt-14 grid gap-4 md:grid-cols-3 md:grid-rows-2">
-            <img src={hero} alt="Pickup truck at dusk" loading="lazy" width={1920} height={1088} className="h-72 w-full object-cover md:col-span-2 md:row-span-2 md:h-full" />
-            <img src={suv} alt="Luxury SUV" loading="lazy" width={1200} height={800} className="h-72 w-full object-cover" />
-            <img src={sedan} alt="Navy sedan" loading="lazy" width={1200} height={800} className="h-72 w-full object-cover" />
-            <img src={truck} alt="White pickup on ranch road" loading="lazy" width={1200} height={800} className="h-72 w-full object-cover md:col-span-3 md:h-96" />
+          <div className="mt-14 grid grid-cols-2 gap-3 md:grid-cols-4 md:grid-rows-2 md:gap-4">
+            {gallery.map((g, i) => (
+              <figure
+                key={g.label}
+                className={`group relative overflow-hidden border border-border ${i === 0 ? "col-span-2 aspect-[16/10] md:row-span-2 md:aspect-auto" : i === 3 ? "col-span-2 aspect-[16/9] md:aspect-auto" : "aspect-square md:aspect-auto"} md:min-h-64`}
+              >
+                <img src={g.src} alt={g.alt} loading="lazy" width={1200} height={800} className="absolute inset-0 h-full w-full object-cover transition duration-700 ease-out group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent opacity-80 transition group-hover:opacity-100" />
+                <div className="absolute inset-0 border border-primary/0 transition group-hover:border-primary/60" />
+                <figcaption className="absolute bottom-4 left-4 text-xs font-semibold uppercase tracking-[0.25em] text-foreground">{g.label}</figcaption>
+              </figure>
+            ))}
           </div>
           <div className="mt-10 flex flex-col gap-4 sm:flex-row">
             <Btn href={GBP}>See Our Google Profile</Btn>
@@ -315,16 +320,17 @@ function Index() {
             <h3 className="font-display text-3xl font-semibold">Odessa, Texas</h3>
             <div className="mt-6 aspect-[4/3] overflow-hidden border border-border">
               <iframe
-                title="Map"
+                title="Map of Odessa, Texas"
                 className="h-full w-full grayscale"
                 loading="lazy"
-                src={`https://maps.google.com/maps?q=${encodeURIComponent(NAME + " Odessa TX")}&output=embed`}
+                src="https://maps.google.com/maps?q=Odessa%2C%20Texas&z=11&output=embed"
               />
             </div>
             <div className="mt-6 grid gap-2 text-sm">
               <a href={TEL} className="text-primary">{PHONE}</a>
               <p className="text-muted-foreground">Monday–Friday: 10 AM – 5 PM · Saturday–Sunday: Closed</p>
-              <a href={GBP} target="_blank" rel="noreferrer" className="text-primary underline">Get directions on Google →</a>
+              <p className="text-xs text-muted-foreground">Map shows the general Odessa area, not our exact location.</p>
+              <a href={GBP} target="_blank" rel="noreferrer" className="text-primary underline">Get exact directions on Google →</a>
             </div>
           </div>
         </div>

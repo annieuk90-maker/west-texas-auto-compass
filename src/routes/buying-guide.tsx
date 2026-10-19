@@ -58,10 +58,10 @@ points: [
 },
 ];
 
-export const Route = createFileRoute("/buying/guide")({
+export const Route = createFileRoute("/buying-guide")({
 head: () =>
 pageHead(
-"/buying/guide",
+"/buying-guide",
 "Vehicle Buying Guide",
 "A practical guide to choosing a vehicle, planning your budget and asking the right questions at West Texas Transportation Consultants in Odessa, Texas."
 ),

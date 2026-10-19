@@ -142,3 +142,37 @@
     color: var(--color-foreground);
   }
 }
+
+:root {
+  --background: oklch(0.14 0.03 260);
+  --foreground: oklch(0.97 0.005 260);
+  --card: oklch(0.19 0.035 260);
+  --card-foreground: oklch(0.97 0.005 260);
+  --primary: oklch(0.78 0.12 80);
+  --primary-foreground: oklch(0.14 0.03 260);
+  --secondary: oklch(0.23 0.04 260);
+  --secondary-foreground: oklch(0.97 0.005 260);
+  --muted: oklch(0.22 0.03 260);
+  --muted-foreground: oklch(0.72 0.02 260);
+  --accent: oklch(0.78 0.12 80);
+  --accent-foreground: oklch(0.14 0.03 260);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.78 0.12 80);
+  --radius: 0.25rem;
+  --ink: oklch(0.09 0.01 260);
+  --gold-gradient: linear-gradient(135deg, oklch(0.85 0.11 85), oklch(0.68 0.13 70));
+  --hero-overlay: linear-gradient(90deg, oklch(0.09 0.02 260 / 0.92), oklch(0.09 0.02 260 / 0.4) 60%, transparent);
+}
+@theme inline {
+  --color-ink: var(--ink);
+  --font-display: "Cormorant Garamond", serif;
+  --font-sans: "Manrope", sans-serif;
+}
+body { font-family: var(--font-sans); }
+@utility text-gold { background: var(--gold-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+@utility bg-gold { background: var(--gold-gradient); }
+@utility bg-hero-overlay { background: var(--hero-overlay); }
+@utility reveal { animation: rise 0.9s cubic-bezier(.2,.7,.2,1) both; }
+@keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+html { scroll-behavior: smooth; }

@@ -194,41 +194,110 @@ export function Header() {
       )}
     </header>
   );
-}
+} 
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-background pb-14 sm:pb-0">
+    <footer className="border-t border-border bg-ink pb-16 sm:pb-0">
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <p className="font-display text-3xl font-bold text-gold">WTTC</p>
-          <p className="mt-3 text-sm text-muted-foreground">{NAME}<br />Odessa, Texas, USA</p>
+          <Link to="/" className="inline-block">
+            <p className="font-display text-3xl font-bold text-gold">WTTC</p>
+          </Link>
+          <p className="mt-3 max-w-xs text-sm leading-6 text-muted-foreground">
+            {NAME}. Explore vehicle options and contact our team in Odessa,
+            Texas, to discuss your needs.
+          </p>
+          <a
+            href={TEL}
+            className="mt-6 inline-flex items-center justify-center bg-gold px-5 py-3 text-xs font-bold uppercase tracking-widest text-primary-foreground transition hover:brightness-110"
+          >
+            Call {PHONE}
+          </a>
         </div>
+
         <div>
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-primary">Explore</p>
-          <ul className="grid gap-2 text-sm">
-            {nav.map((n) => <li key={n.to}><Link to={n.to} className="text-foreground/75 hover:text-primary">{n.label}</Link></li>)}
+          <p className="mb-5 text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            Explore
+          </p>
+          <ul className="grid gap-3 text-sm">
+            {nav.map((n) => (
+              <li key={n.to}>
+                <Link
+                  to={n.to}
+                  className="text-foreground/75 transition-colors duration-200 hover:text-primary"
+                >
+                  {n.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
+
         <div>
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-primary">Hours</p>
-          <ul className="grid gap-2 text-sm text-foreground/75"><li>Mon–Fri: 10 AM – 5 PM</li><li>Sat: Closed</li><li>Sun: Closed</li></ul>
-        </div>
-        <div>
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-primary">Reach us</p>
-          <ul className="grid gap-2 text-sm">
-            <li><a href={TEL} className="text-foreground/75 hover:text-primary">{PHONE}</a></li>
-            <li><a href={GBP} target="_blank" rel="noreferrer" className="text-foreground/75 hover:text-primary">Google Business Profile</a></li>
-            <li><Link to="/contact" className="text-foreground/75 hover:text-primary">Contact page</Link></li>
+          <p className="mb-5 text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            Business Hours
+          </p>
+          <ul className="grid gap-3 text-sm text-foreground/75">
+            <li className="flex justify-between gap-3">
+              <span>Monday–Friday</span>
+              <span>10 AM–5 PM</span>
+            </li>
+            <li className="flex justify-between gap-3">
+              <span>Saturday</span>
+              <span>Closed</span>
+            </li>
+            <li className="flex justify-between gap-3">
+              <span>Sunday</span>
+              <span>Closed</span>
+            </li>
           </ul>
+        </div>
+
+        <div>
+          <p className="mb-5 text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            Get in Touch
+          </p>
+          <p className="text-sm leading-6 text-muted-foreground">
+            Questions about vehicle availability, trade-ins or the buying
+            process? Contact our team.
+          </p>
+          <div className="mt-5 flex flex-col items-start gap-4 text-sm">
+            <Link
+              to="/inventory"
+              className="text-foreground/80 transition-colors hover:text-primary"
+            >
+              Browse Inventory →
+            </Link>
+            <Link
+              to="/contact"
+              className="text-foreground/80 transition-colors hover:text-primary"
+            >
+              Send an Inquiry →
+            </Link>
+            <a
+              href={GBP}
+              target="_blank"
+              rel="noreferrer"
+              className="text-foreground/80 transition-colors hover:text-primary"
+            >
+              Google Business Profile →
+            </a>
+          </div>
         </div>
       </div>
-      <div className="border-t border-border px-5 py-6 text-center text-xs text-muted-foreground">
-        © {new Date().getFullYear()} {NAME}. Vehicle photos are representative. Inventory shown on this site is demonstration data until verified.
+
+      <div className="border-t border-border px-5 py-6 text-center text-xs leading-6 text-muted-foreground">
+        © {new Date().getFullYear()} {NAME}. All rights reserved.
+        <br />
+        Vehicle photos are representative. Inventory is demonstration data
+        until verified.
       </div>
     </footer>
   );
 }
+
+
 
 export function MobileCallBar() {
   return (
